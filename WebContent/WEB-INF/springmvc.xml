@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+ 	   http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+ 	   http://www.springframework.org/schema/aop
+ 	   http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+ 	   http://www.springframework.org/schema/tx 
+ 	   http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+ 	   http://www.springframework.org/schema/context 
+ 	   http://www.springframework.org/schema/context/spring-context-4.2.xsd
+ 	   http://www.springframework.org/schema/mvc
+ 	   http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
+
+	<!-- 开启SpringMVC注解 -->
+	<mvc:annotation-driven/>
+
+	<!-- 配置Spring静态资源 -->
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
+	<mvc:resources location="/dist/" mapping="/dist/**" />
+	<mvc:resources location="/docs/" mapping="/docs/**" />
+	<mvc:resources location="/fonts/" mapping="/fonts/**" />
+	
+	<mvc:resources location="/picture/" mapping="/picture/**" />
+	
+	
+	<!-- 视图解析器 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 配置JSTL支持 -->
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<!--配置路径 -->
+		<property name="prefix" value="/" />
+		<!-- 配置View后缀 -->
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- 全局异常处理 -->
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		
+		<!-- 定义默认的异常处理页面，当该异常类型的注册时使用 -->
+		<property name="defaultErrorView" value="error"></property>
+		
+		<!-- 定义异常处理页面用来获取异常信息的变量名，默认名为exception -->
+		<property name="exceptionAttribute" value="ex"></property>
+		
+		<!-- 定义需要特殊处理的异常，用类名或完全路径名作为key，异常也页名作为值 -->
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.Exception">error</prop>
+			</props>
+		</property>
+	</bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,306 @@
+@font-face { 
+	font-family: 'clipregular';
+	src: url(../fonts/Clip.ttf);
+}
+@font-face {
+	font-family: 'mathilde';
+	src: url(../fonts/mathilde.otf);
+}
+@font-face {
+	font-family: 'angelina';
+	src: url(../fonts/angelina.ttf);
+}
+body{
+	background: #333333;
+}
+/* -------------------------------Õ¯“≥ top start-------------------------------*/
+.ts-top{
+	background: rgba(255,255,255,.1);
+}
+.ts-top #logo{
+	font-family: 'clipregular',sans-serif;
+	font-weight: bold;
+	color: #fff;
+    text-shadow: 
+	0 0 5px #80ffff,
+	0 0 10px #c0c0c0,
+	0 0 20px #c0c0c0;
+    font-size: 35px;
+	line-height:50px;
+	margin-left: 100px;
+}
+.search-box{
+	width: 420px;
+	margin: -45px auto;
+}
+.search-box .form-control{
+	padding: 18px 8px;
+	background: rgba(255,255,255,.15);
+	border-color: #ccc;
+}
+.search-box .search-icon{
+    padding: 8px;
+    position: absolute;
+    margin: -36px 0 0 385px;
+    border: none;
+    background: rgba(255,255,255,.0);
+    border-radius: 4px;
+    color: #fff;
+    font-size: 18px;
+}
+/* -------------------------------Õ¯“≥ top end------------------------------- */
+
+/* -------------------------------profile-header start------------------------------- */
+.profile-header{
+	position: relative;
+    text-align: left;
+    padding: 40px 5% 0;
+    height: 240px;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    text-shadow: 1px 1px 2px rgba(0,0,0,.75), 1px 1px 7px rgba(0,0,0,.5);
+    background-image: url("../picture/HD/wallhaven-458077.jpg");
+}
+.profile-header .profile-header-inner{
+    position: relative;
+    height: 240px;
+    padding: 20px;
+    background-color: rgba(255,255,255,.12);
+    border-radius: 3px 3px 0 0;
+    box-shadow: 1px 1px 5px rgba(0,0,0,.33), inset 0 0 50px rgba(255,255,255,.2);
+}
+.profile-header .profile-header-inner .img-box{
+	width: 200px;
+	height: 200px;
+	overflow: hidden;
+	float: left;
+}
+.profile-header .profile-header-inner .img-box .user-head-portrait{
+	display: block;
+	height: 200px;
+	margin-left: -30%;
+}
+.profile-header .profile-header-inner .img-box .default-head-portrait{
+	display: block;
+	height: 200px;
+}
+.profile-header .profile-header-inner .user-group{
+	width: 590px;
+	height: 55%;
+	position: absolute;
+	left: 255px;
+	top: 55px;
+	display: block;
+    vertical-align: middle;
+    border-left: 1px solid rgba(255,255,255,.2);
+    background-color: rgba(140,140,140,.05);
+    background-image: -webkit-linear-gradient(left,rgba(255,255,255,.1) 20%,transparent 100%);
+    background-image: -o-linear-gradient(left,rgba(255,255,255,.1) 20%,transparent 100%);
+    background-image: linear-gradient(to right,rgba(255,255,255,.1) 20%,transparent 100%);
+}
+/* ”√ªß√˚ */
+.profile-header .profile-header-inner .user-group .user-nane{
+	font-family: 'angelina';
+	font-weight: bold;
+	font-size: 50px;
+	color: rgb(8, 166, 246);
+	display: block;
+	margin: 5px 0 0 20px;
+}
+.profile-header .profile-header-inner .user-group .user-autograph{
+	font-size: 18px;
+	color: #fff;
+	display: block;
+	width: 550px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+	margin-left: 20px;
+}
+
+.profile-header .profile-header-inner .profile-tools{
+	position: absolute;
+	right: 35px;
+	top: 30px;
+	width: 152px;
+	height: 50px;
+	
+	box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0.25em, rgba(0, 0, 0, 0.4) 0.1em 0.1em 1em inset;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.0980392);
+    border-image: initial;
+}
+.profile-header .profile-header-inner .profile-tools span{
+	display: block;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	float: left;
+	color: #ccc;
+	font-size: 24px;
+	border-left: 1px rgba(255, 255, 255, 0.0980392) solid;
+	text-shadow: 1px 1px 2px rgba(0,0,0,.75), 1px 1px 7px rgba(0,0,0,.5);
+}
+.profile-header .profile-header-inner .profile-tools span:hover{
+	color: #fff;
+    background-color: rgba(100,100,100,.1);
+	cursor: pointer;
+}
+.profile-header .profile-header-inner .profile-tools .picture-me{
+	color: #fff;
+}
+/* -------------------------------profile-header end------------------------------- */
+
+
+/* -----------------------profile-content start----------------------- */
+#profile-content{
+	position: relative;
+    text-align: left;
+    padding: 10px 5% 0;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    text-shadow: 1px 1px 2px rgba(0,0,0,.75), 1px 1px 7px rgba(0,0,0,.5);
+    background-color: rgba(255,255,255,.12);
+    border-radius: 3px 3px 0 0;
+    box-shadow: 1px 1px 5px rgba(0,0,0,.33), inset 0 0 50px rgba(255,255,255,.2);
+    float: left;
+    width: 1093.13px;
+    min-height:400px;
+    margin-bottom: 50px;
+}
+#profile-content .input-me{
+	width: 450px;
+}
+
+#profile-content #myTabContent #compile-me,
+#profile-content #myTabContent #setting-me{
+	height:230px;
+	
+}
+#profile-content #myTabContent #compile-me form div{
+	float: left;
+	width: 333px;
+	height: 230px;
+	color: #fff;
+	width:1214.13px;
+}
+#profile-content #myTabContent #compile-me form span{
+	display: block;
+	float: left;
+	color: #fff;
+	width: 80px;
+	padding: 7px 5px;
+}
+#profile-content #myTabContent #compile-me form input,
+#profile-content #myTabContent #compile-me form textarea{
+	padding: 5px 10px;
+	background: rgba(255,255,255,0);
+	border: 1px (255,255,255,.5) solid;
+}
+/* –ﬁ∏ƒ√‹¬Î */
+#profile-content #myTabContent #setting-me form input{
+	padding: 5px 10px;
+	background: rgba(255,255,255,0);
+	border: 1px (255,255,255,.5) solid;
+}
+#profile-content #myTabContent #setting-me form span{
+	color: #fff;
+}
+/* Õº∆¨ */
+#profile-content #myTabContent #picture-me #myTab{
+	border-bottom: 1px solid rgba(255,255,255,.2);
+	margin-bottom: 20px;
+}
+#profile-content #myTabContent #picture-me #myTab li a{
+	color: #fff;
+	background: rgba(255,255,255);
+}
+#profile-content #myTabContent #picture-me #myTab li a:hover{
+	color: #fff;
+	background: rgba(255,255,255,.12);
+	border: 1px solid rgba(255,255,255,.12);
+}
+#profile-content #myTabContent #picture-me #myTab .active a{
+	color: #fff;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.12);
+}
+/* Õº∆¨π‹¿Ì */
+#profile-content #myTabContent #finAllPicture li{
+	width:263px;
+	height: 160px;
+	display: block;
+    float: left;
+    margin: 10px 0;
+}
+#profile-content #myTabContent #finAllPicture .picture-div{
+	width: 240px;
+	height: 160px;
+	overflow: hidden;
+}
+#profile-content #myTabContent #finAllPicture .picture-div:hover{
+	cursor: pointer;
+	color: #fff;
+	text-align: center;
+}
+
+#profile-content #myTabContent #finAllPicture .picture-div .picture-box{
+	width: 240px;
+	height: 160px;
+	border: 1px solid rgba(255,255,255,.5);
+	overflow: hidden;
+}
+
+
+#profile-content #myTabContent #finAllPicture .picture-div .picture-box img{
+	width: 320px;
+	margin: -9% 20% 9% -15%;
+	z-index: 1;
+}
+#profile-content #myTabContent #finAllPicture .picture-div .description{
+	width: 240px;
+	height: 25px;
+	background: rgba(0,0,0,.5);
+	z-index: 100;
+}
+#profile-content #myTabContent #finAllPicture .picture-div .operations{
+	width: 240px;
+	height: 25px;
+	z-index: 100;
+}
+
+
+
+
+/* …œ¥´Õº∆¨ */
+#profile-content #myTabContent #picture-upload .container{
+	width: 1093px;
+}
+
+
+
+
+
+
+
+
+
+/* -----------------------profile-content end----------------------- */
+#webpage-offal{
+	width: 1215px;
+	height: 100px;
+	float: inherit;
+}
+.kv-upload-progress .progress{
+	width: 1064px;
+}
+
+
+
+
+
+
+
+
+

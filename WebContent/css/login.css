@@ -1,0 +1,29 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: #1abc9c;
+}
+
+.headline {
+	text-align: center;
+	color: #ccf0e9;
+}
+
+.login-form-me {
+	width: 500px;
+	margin: 90px auto;
+}
+
+.login-form-me .login-bottom {
+	margin: 0 auto;
+	width: 120px;
+}
+
+.login-form-me .login-bottom a {
+	display: initial;
+	text-align: center;
+	font-size: 15px;
+}
+.login-form-me .form-group .radio{
+	display: inline;
+}
