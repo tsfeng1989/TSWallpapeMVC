@@ -277,8 +277,21 @@ body{
 #profile-content #myTabContent #picture-upload .container{
 	width: 1093px;
 }
-
-
+#profile-content #myTabContent #picture-upload .upload-left{
+	float: left;
+}
+#profile-content #myTabContent #picture-upload .upload-left .upload-pic{
+	width: 450px;
+	height: 95px;
+	margin: 10px 10px;
+	border: 1px solid rgba(255,255,255,.5);
+}
+#profile-content #myTabContent #picture-upload .upload-right{
+	margin: 10px 10px;
+	width: 603px;
+    height: 305px;
+	float: right;
+}
 
 
 

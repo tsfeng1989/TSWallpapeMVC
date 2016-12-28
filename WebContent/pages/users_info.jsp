@@ -296,15 +296,60 @@ $(function(){
 						<div id="myTabContent" class="tab-content">
 							
 							<!-- 图片管理 -->
-							<div role="tabpanel" class="tab-pane fade active in" id="picture-control" aria-labelledby="picture-control-tab">
+							<div role="tabpanel" class="tab-pane fade" id="picture-control" aria-labelledby="picture-control-tab">
 							   <div>
 							   		<ul id="finAllPicture"></ul>
 								</div>
 							</div>
 							
 							<!-- 上传图片 -->
-							<div role="tabpanel" class="tab-pane fade" id="picture-upload" aria-labelledby="picture-upload-tab">
-							  	<div class="container kv-main">
+							<div role="tabpanel" class="tab-pane fade active in" id="picture-upload" aria-labelledby="picture-upload-tab">
+							  	
+							  	<form id="uploadfiles" enctype="multipart/form-data">
+									<div class="upload-left">
+										<div class="upload-pic">
+											<input type="file" multiple="multiple" name="file_upload" />
+											<br/>
+											<input name="pname1" placeholder="图片名称"/>
+										</div>
+										
+										<div class="upload-pic">
+											<input type="file" multiple="multiple" name="file_upload" />
+											<br/>
+											<input name="pname2" placeholder="图片名称"/>
+										</div>
+										
+										<div class="upload-pic">
+											<input type="file" multiple="multiple" name="file_upload" />
+											<br/>
+											<input name="pname3" placeholder="图片名称"/>
+										</div>
+									</div>
+									
+									<div class="upload-right">
+										
+										
+										<select data-toggle="select" class="form-control select select-default mrs mbm">
+											<optgroup label="请选择类型">
+											  <option value="0">My Profile</option>
+											  <option value="1">My Friends</option>
+											  <option value="2">Messages</option>
+											  <option value="3">My Settings</option>
+											  <option value="4">Logout</option>
+											</optgroup>
+										</select>
+										
+																
+									</div>
+									
+									
+									<input type="button" value="上传" onclick="upload()" />
+								</form>
+							  	
+							  	
+							  	
+							  	
+							  	<!-- <div class="container kv-main">
 								    <br>
 								    <form action="" method="post" enctype="multipart/form-data">
 								        
@@ -313,7 +358,7 @@ $(function(){
 								        </div>
 								        
 								    </form>
-								</div>
+								</div> -->
 							</div>
 							
 						</div>
@@ -399,11 +444,11 @@ $(function(){
 			
 			$(".picture-div").mouseover(function(){
 				$(this).children('.description').css({"margin-top":"-25px","position":"absolute","transition":".1s"});
-				$(this).children('.operations').css({"margin-top":"-160px","position":"absolute","transition":".1s"});
+				$(this).children('.operations').css({"margin-top":"-160px","position":"absolute"});
 			});
 			$(".picture-div").mouseleave(function(){
 				$(this).children('.description').css({"margin-top":"0px","position":"","transition":"0"});
-				$(this).children('.operations').css({"margin-top":"0px","position":"","transition":"0"});
+				$(this).children('.operations').css({"margin-top":"0px","position":""});
 			});
 			
 		});
@@ -414,9 +459,37 @@ $(function(){
 	
 	
 	
-	
-	
-	
+	/* ---------------------------------------------------------------------------------------- */
+	function upload(){
+	    var formData = new FormData($( "#uploadfiles" )[0]);
+	     $.ajax({
+	            type: "post",
+	            url: "${pageContext.request.contextPath}/pictureAction/uploadPicture2",
+	            dataType: "json",
+	            data: formData,
+	            /**   
+	             *必须false才会自动加上正确的Content-Type   
+	             */  
+	            contentType : false, 
+	            /**   
+	             * 必须false才会避开jQuery对 formdata 的默认处理   
+	             * XMLHttpRequest会对 formdata 进行正确的处理   
+	             */ 
+	            processData : false,
+	            success: function(data){//从后端返回数据进行处理
+	              if(data){
+	                  alert("上传成功！");
+	              }else{
+	                  alert("上传失败！");
+	              }
+	            },
+	            error: function(err) {//提交出错
+	                $("#msg").html(JSON.stringify(err));//打出响应信息
+	                alert("服务器无响应");
+	              }
+	          });
+	}
+	/* ---------------------------------------------------------------------------------------- */
 	
 
 	/* 图片上传插件 */

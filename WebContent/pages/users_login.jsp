@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登录页面</title>
-<link rel="Shortcut Icon" href="${pageContext.request.contextPath}/picture/ico/ts2.png">
+	<link rel="Shortcut Icon" href="${pageContext.request.contextPath}/picture/ico/ts2.png">
 	<!-- Loading Bootstrap -->
 	<link href="${pageContext.request.contextPath}/dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
