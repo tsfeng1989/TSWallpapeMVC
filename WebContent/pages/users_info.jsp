@@ -311,31 +311,30 @@ $(function(){
 											<input type="file" multiple="multiple" name="file_upload" />
 											<br/>
 											<input name="pname1" placeholder="图片名称"/>
+											
+											<span>　　　描述：</span><textarea class="textarea" name="pdescribe1" cols="30" rows="4"></textarea>
 										</div>
 										
 										<div class="upload-pic">
 											<input type="file" multiple="multiple" name="file_upload" />
 											<br/>
 											<input name="pname2" placeholder="图片名称"/>
+											<span>　　　描述：</span><textarea class="textarea" name="pdescribe2" cols="30" rows="4"></textarea>
 										</div>
 										
 										<div class="upload-pic">
 											<input type="file" multiple="multiple" name="file_upload" />
 											<br/>
 											<input name="pname3" placeholder="图片名称"/>
+											<span>　　　描述：</span><textarea class="textarea" name="pdescribe3" cols="30" rows="4"></textarea>
 										</div>
 									</div>
 									
 									<div class="upload-right">
 										
 										
-										<select data-toggle="select" class="form-control select select-default mrs mbm">
-											<optgroup label="请选择类型">
-											  <option value="0">My Profile</option>
-											  <option value="1">My Friends</option>
-											  <option value="2">Messages</option>
-											  <option value="3">My Settings</option>
-											  <option value="4">Logout</option>
+										<select name="picture_leixing" data-toggle="select" class="form-control select select-default mrs mbm">
+											<optgroup id="picture_leixing" label="请选择类型">
 											</optgroup>
 										</select>
 										
@@ -453,6 +452,14 @@ $(function(){
 			
 		});
 		
+		$.post("${pageContext.request.contextPath}/picture_typeAction/findAllPt","",function(data){
+			$.each(data,function(i,v){
+				/* alert((i+1)+"--"+v.pt_name); */
+				var op = "<option value='"+v.pt_id+"'>"+v.pt_name+"</option>";
+				$("#picture_leixing").append(op);
+			});
+		});
+		
 		
 	}
 	window.onload = loadDate();
@@ -460,6 +467,7 @@ $(function(){
 	
 	
 	/* ---------------------------------------------------------------------------------------- */
+	
 	function upload(){
 	    var formData = new FormData($( "#uploadfiles" )[0]);
 	     $.ajax({

@@ -281,14 +281,29 @@ body{
 	float: left;
 }
 #profile-content #myTabContent #picture-upload .upload-left .upload-pic{
-	width: 450px;
+	width: 520px;
 	height: 95px;
 	margin: 10px 10px;
-	border: 1px solid rgba(255,255,255,.5);
+	/* border: 1px solid rgba(255,255,255,.5); */
+	position: relative;
+	color: #fff;
+	background: rgba(255,255,255,0)
 }
+#profile-content #myTabContent #picture-upload .upload-left .upload-pic input{
+	padding: 6.8px 5px;
+	background: rgba(255,255,255,0);
+}
+#profile-content #myTabContent #picture-upload .upload-left .upload-pic .textarea{
+	position: absolute;
+	top: 0;
+	right: 1px;
+	padding: 6.2px 5px;
+	background: rgba(255,255,255,0);
+}
+
 #profile-content #myTabContent #picture-upload .upload-right{
 	margin: 10px 10px;
-	width: 603px;
+	width: 533px;
     height: 305px;
 	float: right;
 }
