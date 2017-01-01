@@ -10,7 +10,14 @@ public interface UsersService {
 	public Users login(Users u);
 	
 	//修改用户信息
+	/**
+	 * 只修改 用户名、性别、年龄、个性签名、手机号码、电子邮箱
+	 */
 	public boolean updateUsers(Users u);
+	/**
+	 * 修改上传数量
+	 */
+	public boolean updateUsers2(Users u);
 	
 	//根据ID查询用户信息
 	public Users findUsersById(Users u);

@@ -1,0 +1,90 @@
+.modal-backdrop {
+    position: inherit;
+}
+.ts-top {
+    background: rgba(51,51,51,1);
+    height: 55px;
+}
+/* ----------------------- */
+
+
+#periphery-top{
+	position: fixed;
+	width: 100%;
+}
+
+#periphery-top #condition-bar{
+	height: 34px;
+	background-image: linear-gradient(to bottom,#292c2f 0,#222 100%);
+	box-shadow: 0 0 0 1px #222, 0 5px 5px rgba(0,0,0,.5);
+	margin-top: -9px;
+}
+#periphery-top #condition-bar .navigationBar .navigationBar-ul{
+	margin: 0 20px;
+}
+#periphery-top #condition-bar .navigationBar .navigationBar-ul li{
+	display: block;
+    width: 120px;
+    height: 34px;
+    float: left;
+    line-height: 32px;
+    text-align: center;
+    margin: 0 20px 0 0;
+    background: rgba(155,155,155,.1);
+    border: 1px solid rgba(155,155,155,.1);
+    border-radius: 4px;
+    
+}
+#periphery-top #condition-bar .navigationBar .navigationBar-ul li:hover{
+    background: rgba(255,255,255,.1);
+    cursor: pointer;
+}
+#periphery-top #condition-bar .navigationBar .navigationBar-ul li a{
+	color: rgba(255,255,255,.5);
+}
+#periphery-top #condition-bar .navigationBar .form-control{
+	width: 200px;
+	margin: 10px 10px 0 0;
+	background: rgba(155,155,155,.1);
+	border: 1px solid rgba(155,155,155,.1);
+	color: rgba(255,255,255,.5);
+}
+#periphery-top #condition-bar .navigationBar .form-control:hover{
+	background: rgba(255,255,255,.1);
+    cursor: pointer;
+}
+#periphery-top #condition-bar .navigationBar .form-control option{
+	color: #333333;
+	
+}
+
+
+#picture-district li{
+	 list-style-type: none;
+	 
+}
+#picture-district .picture-box{
+	width: 300px;
+	height: 160px;
+	overflow: hidden;
+	float: left;
+	margin: 10px 8px;
+	border: 1px solid rgba(255,255,255,.1)
+}
+#picture-district .picture-box:hover{
+    cursor: pointer;
+}
+#picture-district .picture-box img{
+	display: block;
+	width: 300px;
+	
+}
+
+
+
+
+
+
+
+
+

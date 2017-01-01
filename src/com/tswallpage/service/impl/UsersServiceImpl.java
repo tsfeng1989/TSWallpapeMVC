@@ -32,9 +32,20 @@ public class UsersServiceImpl implements UsersService {
 	}
 	
 	//修改用户信息
+	/**
+	 * 只修改 用户名、性别、年龄、个性签名、手机号码、电子邮箱
+	 */
 	@Override
 	public boolean updateUsers(Users u) {
 		return usersDao.updateUsers(u);
+	}
+	
+	/**
+	 * 修改上传数量
+	 */
+	@Override
+	public boolean updateUsers2(Users u) {
+		return usersDao.updateUsers2(u);
 	}
 	
 	//根据ID查询用户信息
@@ -53,5 +64,9 @@ public class UsersServiceImpl implements UsersService {
 		return usersDao.updatePassword(u);
 	}
 	
-
+	
+	
+	public void setUsersDao(UsersDao usersDao) {
+		this.usersDao = usersDao;
+	}
 }

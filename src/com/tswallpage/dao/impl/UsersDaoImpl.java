@@ -47,12 +47,24 @@ public class UsersDaoImpl extends BaseDao implements UsersDao {
 	}
 	
 	//修改用户信息
+	/**
+	 * 只修改 用户名、性别、年龄、个性签名、手机号码、电子邮箱
+	 */
 	@Override
 	public boolean updateUsers(Users u) {
 		//修改 用户名、性别、年龄、个性签名、手机号码、电子邮箱
 		String sql = "update tswallpape.tb_user set u_name='"+u.getU_name()+"',u_sex='"
 				+u.getU_sex()+"',u_age="+u.getU_age()+",u_autograph='"+u.getU_autograph()+"',u_phone='"
 				+u.getU_phone()+"',u_email='"+u.getU_email()+"' where u_no="+u.getU_no();
+		
+		return getSession().createSQLQuery(sql).executeUpdate()>0?true:false;
+	}
+	/**
+	 * 修改上传数量
+	 */
+	@Override
+	public boolean updateUsers2(Users u) {
+		String sql = "update tswallpape.tb_user set u_upload="+u.getU_upload()+" where u_no="+u.getU_no();
 		
 		return getSession().createSQLQuery(sql).executeUpdate()>0?true:false;
 	}

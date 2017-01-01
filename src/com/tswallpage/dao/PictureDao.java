@@ -19,4 +19,10 @@ public interface PictureDao {
 	
 	//查询本用户的所有图片
 	public List findAllPicture(int id);
+	
+	//根据uuid生成名查询图片
+	public Picture findPictureByUUIDNane(String uname);
+	
+	//查询全部图片
+	public List queryAllPicture();
 }

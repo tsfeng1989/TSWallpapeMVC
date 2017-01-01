@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tswallpage.entity.Picture;
+import com.tswallpage.entity.Picture_user;
+import com.tswallpage.entity.Users;
 import com.tswallpage.service.PictureService;
+import com.tswallpage.service.Picture_userService;
+import com.tswallpage.service.UsersService;
 import com.tswallpage.util.CreateUUID;
 
 /**
@@ -28,63 +32,33 @@ import com.tswallpage.util.CreateUUID;
 public class PictureAction {
 	@Resource(name="pictureService")
 	private PictureService pictureService;
+	@Resource(name="usersService")
+	private UsersService usersService;
+	@Resource(name="picture_userService")
+	private Picture_userService picture_userService;
 	
 	//上传图片
 	@RequestMapping("/uploadPicture")
-	public String uploadPicture(Picture p){
-		
-		System.out.println("----uploadAction----");
-		if(pictureService.uploadPicture(p)){
-			return "pages/users_info";
-		}
-		return "error";
-	}
-	
-	//删除图片
-	@RequestMapping("/delPicture")
-	public String delPicture(Picture p){
-		if(pictureService.delPicture(p)){
-			return "";
-		}
-		return "error";
-	}
-	
-	//查询此用户的全部图片
-	@RequestMapping("/findAllPicture")
-	@ResponseBody
-	public List findAllPicture(int id){
-		return pictureService.findAllPicture(id);
-	}
-	
-	
-	
-	
-	@RequestMapping("/uploadPicture2")
 	@ResponseBody
 	public boolean uploadFiles(Picture p,@RequestParam("file_upload") MultipartFile [] files,
 			HttpServletRequest request,String pname1,String pname2,String pname3,
-			String pdescribe1,String pdescribe2,String pdescribe3,int picture_leixing){
+			String pdescribe1,String pdescribe2,String pdescribe3,int picture_leixing,
+			Users u,Picture_user pu){
 		
 	    boolean result = false;
 	    String realPath;
-	    String path = request.getSession().getServletContext().getRealPath("/picture/HD");	//Tomcat根目录+picture/HD
+	    String path = request.getSession().getServletContext().getRealPath("/picture/HD");	//Tomcat根目录+picture/HD（绝对路径）
 	    
-	    
-	    //上传
 	    for(int i=0;i<files.length;i++){
 	        if (!files[i].isEmpty()) { 
 				String uuid = CreateUUID.getUUID();											//生成uuid
 				String pictureName = files[i].getOriginalFilename();						//得到原文件名
 				String suffix = pictureName.substring(pictureName.length()-3);				//文件获取后缀
-				realPath = path + "/" + uuid + "." + suffix;								//上传到（项目根目录/picture/HD）
+				realPath = path + "/" + uuid + "." + suffix;								//项目根目录/picture/HD/自动生成名+后缀（绝对路径+图片名+后缀）
+				String relativePath = "picture/HD" + "/" + uuid + "." + suffix;				//相对路径+后缀
 				
-				System.out.println("原文件名："+pictureName);
-				System.out.println("上传路径+自动生成名+后缀"+realPath);
-				
-				
-				//保存到数据库
 				p.setP_date(new Date());													//上传日期
-				p.setP_path(realPath);														//保存路径
+				p.setP_path(relativePath);													//保存路径(相对路径)
 				p.setP_type(picture_leixing);												//图片类型
 				
 				//获取图片名称
@@ -110,23 +84,59 @@ public class PictureAction {
 					p.setP_describe(pdescribe3);
 				}
 				
-			    if(pictureService.uploadPicture(p)){
-			    	try {
-						files[i].transferTo(new File(realPath));							// 保存文件
-						result = true;
-					} catch (IllegalStateException | IOException e) {
-						e.printStackTrace();
-					}
-				}			
+				//保存到数据库
+	    		if(pictureService.uploadPicture(p)){
+	    			//根据用户ID查用户信息
+	    			u = usersService.findUsersById2(u.getU_no());
+					//修改用户信息 --> 更新用户的上传图片数量
+			    	u.setU_upload(u.getU_upload()+1);
+			    	
+			    	if(usersService.updateUsers2(u)){
+			    		//添加用户图片中间表信息
+			    		
+			    		//根据自动生成名查图片（因为自动生成名是uuid生成的，是唯一的）
+						Picture pic = pictureService.findPictureByUUIDNane(relativePath);
+			    		pu.setPu_uno(u.getU_no());											//上传者ID
+			    		pu.setPu_pno(pic.getP_no());										//图片ID
+			    		
+			    		if(picture_userService.addPicture_userDao(pu)){
+			    			//所有信息修改成功后保存图片
+			    			try {
+								files[i].transferTo(new File(realPath));					// 保存文件
+								result = true;
+							} catch (IllegalStateException | IOException e) {
+								e.printStackTrace();
+							}
+			    		}
+			    	}
+				}
 	        }  
 	    }
 	    return result;
 	}
 	
+	//删除图片
+	@RequestMapping("/delPicture")
+	public String delPicture(Picture p){
+		if(pictureService.delPicture(p)){
+			return "";
+		}
+		return "error";
+	}
 	
+	//查询此用户的全部图片
+	@RequestMapping("/findAllPicture")
+	@ResponseBody
+	public List findAllPicture(int id){
+		return pictureService.findAllPicture(id);
+	}
 	
-	
-	
+	//查询全部图片
+	@RequestMapping("queryAllPicture")
+	@ResponseBody
+	public List queryAllPicture(){
+		return pictureService.queryAllPicture();
+	} 
 	
 	
 	
@@ -139,4 +149,13 @@ public class PictureAction {
 	public void setPictureService(PictureService pictureService) {
 		this.pictureService = pictureService;
 	}
+
+	public void setUsersService(UsersService usersService) {
+		this.usersService = usersService;
+	}
+
+	public void setPicture_userService(Picture_userService picture_userService) {
+		this.picture_userService = picture_userService;
+	}
+	
 }

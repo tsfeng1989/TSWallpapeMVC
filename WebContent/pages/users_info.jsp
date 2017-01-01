@@ -289,25 +289,29 @@ $(function(){
 					
 					<div class="bs-example bs-example-tabs">
 						<ul id="myTab" class="nav nav-tabs" role="tablist">
-						  <li role="presentation" class="active"><a href="#picture-control" id="picture-control-tab" role="tab" data-toggle="tab" aria-controls="picture-control" aria-expanded="false">图片管理</a></li>
+						  <li role="presentation" class="active"><a href="#picture-control" id="picture-control-tab" role="tab" data-toggle="tab" aria-controls="picture-control" aria-expanded="false">我的图片</a></li>
+						  <li role="presentation" class=""><a href="#picture-collect" id="picture-collect-tab" role="tab" data-toggle="tab" aria-controls="picture-collect" aria-expanded="true">我的收藏</a></li>
 						  <li role="presentation" class=""><a href="#picture-upload" role="tab" id="picture-upload-tab" data-toggle="tab" aria-controls="picture-upload" aria-expanded="true">上传</a></li>
 						</ul>
 						
 						<div id="myTabContent" class="tab-content">
 							
-							<!-- 图片管理 -->
-							<div role="tabpanel" class="tab-pane fade" id="picture-control" aria-labelledby="picture-control-tab">
+							<!-- 我的图片 -->
+							<div role="tabpanel" class="tab-pane fade active in" id="picture-control" aria-labelledby="picture-control-tab">
 							   <div>
 							   		<ul id="finAllPicture"></ul>
 								</div>
 							</div>
-							
+							<div role="tabpanel" class="tab-pane fade" id="picture-collect" aria-labelledby="picture-collect-tab">
+								我的收藏
+							</div>
 							<!-- 上传图片 -->
-							<div role="tabpanel" class="tab-pane fade active in" id="picture-upload" aria-labelledby="picture-upload-tab">
+							<div role="tabpanel" class="tab-pane fade" id="picture-upload" aria-labelledby="picture-upload-tab">
 							  	
 							  	<form id="uploadfiles" enctype="multipart/form-data">
 									<div class="upload-left">
 										<div class="upload-pic">
+											<input name="u_no" type="hidden" value="${sessionScope.user.u_no}">
 											<input type="file" multiple="multiple" name="file_upload" />
 											<br/>
 											<input name="pname1" placeholder="图片名称"/>
@@ -417,7 +421,7 @@ $(function(){
 		alert("旧密码错误！");
 	}
 	
-	/* 管理图片 */
+	/* 我的图片 */
 	function loadDate(){
 		$.post("${pageContext.request.contextPath}/pictureAction/findAllPicture?id=${sessionScope.user.u_no}","",function(data){
 			$.each(data,function(i,v){
@@ -469,33 +473,33 @@ $(function(){
 	/* ---------------------------------------------------------------------------------------- */
 	
 	function upload(){
-	    var formData = new FormData($( "#uploadfiles" )[0]);
-	     $.ajax({
-	            type: "post",
-	            url: "${pageContext.request.contextPath}/pictureAction/uploadPicture2",
-	            dataType: "json",
-	            data: formData,
-	            /**   
-	             *必须false才会自动加上正确的Content-Type   
-	             */  
-	            contentType : false, 
-	            /**   
-	             * 必须false才会避开jQuery对 formdata 的默认处理   
-	             * XMLHttpRequest会对 formdata 进行正确的处理   
-	             */ 
-	            processData : false,
-	            success: function(data){//从后端返回数据进行处理
-	              if(data){
-	                  alert("上传成功！");
-	              }else{
-	                  alert("上传失败！");
-	              }
-	            },
-	            error: function(err) {//提交出错
-	                $("#msg").html(JSON.stringify(err));//打出响应信息
-	                alert("服务器无响应");
-	              }
-	          });
+		var formData = new FormData($( "#uploadfiles" )[0]);
+		$.ajax({
+			type: "post",
+			url: "${pageContext.request.contextPath}/pictureAction/uploadPicture",
+			dataType: "json",
+			data: formData,
+			/**   
+			 *必须false才会自动加上正确的Content-Type   
+			 */  
+			contentType : false, 
+			/**   
+			 * 必须false才会避开jQuery对 formdata 的默认处理   
+			 * XMLHttpRequest会对 formdata 进行正确的处理   
+			 */ 
+			processData : false,
+			success: function(data){//从后端返回数据进行处理
+			  if(data){
+			      alert("上传成功！");
+			  }else{
+			      alert("上传失败！");
+			  }
+			},
+			error: function(err) {//提交出错
+				$("#msg").html(JSON.stringify(err));//打出响应信息
+				alert("服务器无响应");
+			}
+		});
 	}
 	/* ---------------------------------------------------------------------------------------- */
 	

@@ -44,5 +44,17 @@ public class PictureDaoImpl extends BaseDao implements PictureDao {
 	+"left join `tswallpape`.`tb_picture_type` pt on p.p_type=pt.pt_id where pr.pu_uno="+id;
 		return getSession().createSQLQuery(sql).list();
 	}
+	
+	//根据uuid生成名查询图片
+	@Override
+	public Picture findPictureByUUIDNane(String uname) {
+		return (Picture)executeQuery("from Picture where p_path='"+uname+"'").get(0);
+	}
+	
+	//查看全部图片
+	@Override
+	public List queryAllPicture() {
+		return executeQuery("from Picture order by p_date desc");
+	}
 
 }

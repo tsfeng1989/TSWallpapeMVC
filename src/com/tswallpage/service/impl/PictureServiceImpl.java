@@ -51,7 +51,19 @@ public class PictureServiceImpl implements PictureService{
 		return pictureDao.findAllPicture(id);
 	}
 	
+	//根据uuid生成名查询图片
+	@Override
+	public Picture findPictureByUUIDNane(String uname) {
+		return pictureDao.findPictureByUUIDNane(uname);
+	}
+	
 	public void setPictureDao(PictureDao pictureDao) {
 		this.pictureDao = pictureDao;
+	}
+	
+	//查询全部图片
+	@Override
+	public List queryAllPicture() {
+		return pictureDao.queryAllPicture();
 	}
 }

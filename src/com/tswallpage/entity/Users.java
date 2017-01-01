@@ -59,12 +59,6 @@ public class Users implements Serializable {
 		this.u_state = u_state;
 	}
 
-
-
-
-
-
-
 	@Id
 	@GeneratedValue
 	public int getU_no() {

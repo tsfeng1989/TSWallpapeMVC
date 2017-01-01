@@ -198,7 +198,7 @@
 		<div class="navigationBar">
 			<ul class="navigationBar-ul">
 				<li>
-					<a href="#"><span class="glyphicon glyphicon-time"></span> 最新</a>
+					<a href="${pageContext.request.contextPath}/pages/latest.jsp"><span class="glyphicon glyphicon-time"></span> 最新</a>
 				</li>
 				<li>
 					<a href="#"><span class="glyphicon glyphicon-fire"></span> 热门</a>
