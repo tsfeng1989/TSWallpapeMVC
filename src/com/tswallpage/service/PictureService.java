@@ -3,6 +3,7 @@ package com.tswallpage.service;
 import java.util.List;
 
 import com.tswallpage.entity.Picture;
+import com.tswallpage.util.PageBean;
 
 /**
  * 
@@ -30,4 +31,7 @@ public interface PictureService {
 	
 	//查询全部图片
 	public List queryAllPicture();
+	
+	//分页查询数据
+	public PageBean pagingQuery(int number);
 }

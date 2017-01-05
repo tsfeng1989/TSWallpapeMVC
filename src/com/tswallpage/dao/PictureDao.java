@@ -3,6 +3,7 @@ package com.tswallpage.dao;
 import java.util.List;
 
 import com.tswallpage.entity.Picture;
+import com.tswallpage.util.PageBean;
 
 public interface PictureDao {
 	//添加图片
@@ -25,4 +26,10 @@ public interface PictureDao {
 	
 	//查询全部图片
 	public List queryAllPicture();
+	
+	//多条件查询
+	//public List multi_condition();
+	
+	//分页查询
+	public PageBean pagingQuery(int number);
 }

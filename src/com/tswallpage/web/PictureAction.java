@@ -21,6 +21,7 @@ import com.tswallpage.service.PictureService;
 import com.tswallpage.service.Picture_userService;
 import com.tswallpage.service.UsersService;
 import com.tswallpage.util.CreateUUID;
+import com.tswallpage.util.PageBean;
 
 /**
  * 
@@ -36,6 +37,7 @@ public class PictureAction {
 	private UsersService usersService;
 	@Resource(name="picture_userService")
 	private Picture_userService picture_userService;
+	
 	
 	//上传图片
 	@RequestMapping("/uploadPicture")
@@ -138,9 +140,13 @@ public class PictureAction {
 		return pictureService.queryAllPicture();
 	} 
 	
-	
-	
-	
+	//分页查询图片
+	@RequestMapping("/pagingQuery")
+	@ResponseBody
+	public PageBean pagingQuery(int number){
+		PageBean pb = pictureService.pagingQuery(number);
+		return pb;
+	}
 	
 	
 	

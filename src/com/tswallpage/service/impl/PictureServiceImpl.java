@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.tswallpage.dao.PictureDao;
 import com.tswallpage.entity.Picture;
 import com.tswallpage.service.PictureService;
+import com.tswallpage.util.PageBean;
 
 /**
  * 
@@ -65,5 +66,11 @@ public class PictureServiceImpl implements PictureService{
 	@Override
 	public List queryAllPicture() {
 		return pictureDao.queryAllPicture();
+	}
+	
+	//∑÷“≥≤È—Ø
+	@Override
+	public PageBean pagingQuery(int number) {
+		return pictureDao.pagingQuery(number);
 	}
 }

@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>TSWallpape latest</title>
 <link rel="Shortcut Icon"
-	href="${pageContext.request.contextPath}/picture/ico/ts2.png">
+	href="${pageContext.request.contextPath}/picture/ico/ts.ioc">
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script>
 
@@ -223,17 +223,16 @@
 					<li><a href="#"><span class="glyphicon glyphicon-fire"></span>
 							热门</a></li>
 				</ul>
-				<select data-toggle="select" class="form-control select select-default mrs mbm">
-					<option value="0" disabled>请选择分类</option>
-					
+				<select id="classify-me" data-toggle="select" class="form-control select select-default mrs mbm">
+					<option disabled>请选择分类</option>
+					<option value="0">全部</option>
 				</select>
 			</div>
-
-
-
-
-
-
+			<div style="color: #fff;">
+				<span class="a1"></span>
+				<span class="a2"></span>
+				<span class="a3"></span>
+			</div>
 		</div>
 	</div>
 	<!-- ------------------------------------------网页顶部 结束------------------------------------------ -->
@@ -243,28 +242,61 @@
 	</div>
 
 	<script type="text/javascript">
-		function loadDate(){
-			$.post("${pageContext.request.contextPath}/pictureAction/queryAllPicture","",function(data){
+		function typeload(){
+			$.post("${pageContext.request.contextPath}/picture_typeAction/findAllPt","",function(data){
 				$.each(data,function(i,v){
+					var op = "<option value='"+v.pt_id+"'>"+v.pt_name+"</option>";
+					$("#classify-me").append(op);
+				});
+			});
+		}
+		window.onload = typeload();
+		
+		//默认第一页
+		var number = 1;
+		function loadDate(){
+			$.get("${pageContext.request.contextPath}/pictureAction/pagingQuery?number="+number,"",function(data){
+				$.each(data.list,function(i,v){
+						var tr = "<li>";
+						tr += "<div class='picture-div'>";
+						tr += "<div class='picture-box'>";
+						tr += "<img src='${pageContext.request.contextPath}/"+v[2]+"'>";
+						tr += "</div>";
+						//tr += "<div class='description'>"+v[2]+"</div>";
+						tr += "<div class='operations'>";
 						
-					var tr = "<li>";
-					tr += "<div class='picture-div'>";
-					tr += "<div class='picture-box'>";
-					tr += "<img src='${pageContext.request.contextPath}/"+v.p_path+"'>";
-					tr += "</div>";
-					/* tr += "<div class='description'>"+v.p_name+"</div>"; */
-					tr += "<div class='operations'>";
-					
-					tr +="</div>";
-					tr += "</div>";
-					tr += "</li>";
-						
-					$("#finAllPicture").append(tr);
+						tr +="</div>";
+						tr += "</div>";
+						tr += "</li>";
+						$("#finAllPicture").append(tr);
 				});
 				
-			})
+				
+				$(window).scroll(function(){
+					
+					var totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
+					var documentheight = parseFloat($(document).height());
+					var juliditb = documentheight - totalheight;				//滚动条到底部的距离
+					$(".a1").text(documentheight);
+					$(".a2").text(totalheight);
+					$(".a3").text(juliditb);
+					
+					//距离底部小于等于150px触发
+					if(juliditb <= 150){
+						number++;
+						if(data.pageNum < number){
+							return false;
+						}
+						loadDate();
+					}
+				});
+				
+			});
 		}
 		window.onload = loadDate();
+		
+		
+		
 	</script>
     
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>

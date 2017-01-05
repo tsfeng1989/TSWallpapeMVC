@@ -1,9 +1,13 @@
 package com.tswallpage.dao.impl;
 
 import java.util.List;
+
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Repository;
 import com.tswallpage.dao.PictureDao;
 import com.tswallpage.entity.Picture;
+import com.tswallpage.util.PageBean;
 /**
  * 
  * @author Forever
@@ -11,6 +15,8 @@ import com.tswallpage.entity.Picture;
  */
 @Repository("pictureDao")
 public class PictureDaoImpl extends BaseDao implements PictureDao {
+	@Resource(name="pageBean")
+	private PageBean pageBean;
 	
 	//添加图片
 	@Override
@@ -56,5 +62,35 @@ public class PictureDaoImpl extends BaseDao implements PictureDao {
 	public List queryAllPicture() {
 		return executeQuery("from Picture order by p_date desc");
 	}
-
+	
+	//分页查询(查询全部数据)
+	@Override
+	public PageBean pagingQuery(int number) {
+		final int sl = 24;															//每页显示的数量
+		
+		pageBean.setPageLine(sl);													//每页查询的记录数
+		pageBean.setPageLine(number);												//当前页码
+		
+		String sql2 = "select count(*) totalCount from `tswallpape`.`tb_picture`";
+		List pb = getSession().createSQLQuery(sql2).list();
+		pageBean.setTotalCount(Integer.valueOf(pb.get(0).toString()));				//总记录数
+		
+		pageBean.setPageNum(pageBean.countPageNum(pageBean.getTotalCount(), sl));	//总页数
+		pageBean.setStart(pageBean.countStart(number, sl));							//每页第一张的下标(从1开始)
+		pageBean.setEnd(pageBean.countEnd(number, sl));								//每页最后一张的下标(从1开始)
+		
+		String sql = "select * from (select * from `tswallpape`.`tb_picture` p "
+				+"left join `tswallpape`.`tb_picture_user` pr on p.p_no=pr.pu_pno "
+				+"left join `tswallpape`.`tb_picture_type` pt on p.p_type=pt.pt_id "
+				+"order by p.p_date desc,p.p_no desc) temporary_table limit "
+				+(pageBean.getStart()-1)+","+(pageBean.getEnd()-pageBean.getStart()+1)+";";
+					
+		pageBean.setList(getSession().createSQLQuery(sql).list());					//查询结果集
+		
+		return pageBean;
+	}
+	
+	public void setPageBean(PageBean pageBean) {
+		this.pageBean = pageBean;
+	}
 }
