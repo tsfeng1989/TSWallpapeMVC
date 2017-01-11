@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>TSWallpape latest</title>
+<title>picture details</title>
 <link rel="Shortcut Icon"
 	href="${pageContext.request.contextPath}/picture/ico/ts2.png">
 
@@ -14,14 +15,16 @@
 <!-- bootstrap -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 
-
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/index.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/user_info.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/latest.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/picture_drtails.css">
 </head>
+
 <body>
 	<!-- ------------------------------------------网页顶部开始------------------------------------------ -->
 	<div id="periphery-top">
@@ -212,102 +215,64 @@
 				</c:choose>
 			</div>
 		</div>
-		<div id="condition-bar">
-
-
-
-			<div class="navigationBar">
-				<ul class="navigationBar-ul">
-					<li><a href="/TSWallpapeMVC/pages/latest.jsp"><span
-							class="glyphicon glyphicon-time"></span> 最新</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-fire"></span>
-							热门</a></li>
-				</ul>
-				<select id="classify-me" data-toggle="select" class="form-control select select-default mrs mbm">
-					<option disabled>请选择分类</option>
-					<option value="0">全部</option>
-				</select>
-			</div>
-			<div style="color: #fff;">
-				<span class="a1"></span>
-				<span class="a2"></span>
-				<span class="a3"></span>
-			</div>
-		</div>
 	</div>
 	<!-- ------------------------------------------网页顶部 结束------------------------------------------ -->
-	<br/><br/><br/><br/><br/>
-	<div id="picture-district">
-		<ul id="finAllPicture" style="margin: 0 auto;"></ul>
+	
+	<div id="main-body-content">
+		<div id="picture-region">
+			<div class="picture-box">
+				<img id="picture-details" class="picture-details" alt="" src=""  rel="">
+			</div>
+		</div>
+		
+		<div class="picture-info">
+			<h3>图片信息</h3>
+			<div>
+				名称：<span class="pname"></span>
+			</div>
+			<div>
+				上传日期：<span class="pdatetime"></span>
+			</div>
+		</div>
+		
+		<div style="width: 1200px;height: 300px;background:rgba(55,55,55,.8);float: left;">
+			
+		</div>
+		
 	</div>
+<script type="text/javascript">
+//获取地址栏参数
+function getQueryString(name) {
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+	var r = window.location.search.substr(1).match(reg);
+	if (r != null) return unescape(r[2]); return null;
+}
+$(document).ready(function(){
+	var parameter = "${pageContext.request.contextPath}/" + getQueryString("par");
+	$(".picture-details").attr("src", parameter);
+	$(".picture-details").attr("rel", parameter);
+	$(".pname").html(getQueryString("name"));
+	$(".pdatetime").html(getQueryString("datemime"));
+});
+$(function() {
+    $('.picture-box').imageView({width: 950, height:605});
+});
 
-	<script type="text/javascript">
-		function typeload(){
-			$.post("${pageContext.request.contextPath}/picture_typeAction/findAllPt","",function(data){
-				$.each(data,function(i,v){
-					var op = "<option value='"+v.pt_id+"'>"+v.pt_name+"</option>";
-					$("#classify-me").append(op);
-				});
-			});
-		}
-		window.onload = typeload();
-		
-		//默认第一页
-		var number = 1;
-		function loadDate(){
-			$.get("${pageContext.request.contextPath}/pictureAction/pagingQuery?number="+number,"",function(data){
-				$.each(data.list,function(i,v){
-						var tr = "<li>";
-						tr += "<div class='picture-div'>";
-						tr += "<div class='picture-box'>";
-						
-						tr += "<a target='_blank' href='${pageContext.request.contextPath}/pages/picture_details.jsp?id="
-								+v[0]+"&name="+v[1]+"&par="+v[2]+"&datemime="+v[4]+"&type="+v[12]+"'>";
-						tr += "<img src='${pageContext.request.contextPath}/"+v[2]+"'>";
-						tr += "</a>";
-						
-						tr += "</div>";
-						//tr += "<div class='description'>"+v[2]+"</div>";
-						tr += "<div class='operations'>";
-						
-						tr +="</div>";
-						tr += "</div>";
-						tr += "</li>";
-						$("#finAllPicture").append(tr);
-				});
-				
-				
-				$(window).scroll(function(){
-					
-					var totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
-					var documentheight = parseFloat($(document).height());
-					var juliditb = documentheight - totalheight;				//滚动条到底部的距离
-					$(".a1").text(documentheight);
-					$(".a2").text(totalheight);
-					$(".a3").text(juliditb);
-					
-					//距离底部小于等于150px触发
-					if(juliditb <= 150){
-						number++;
-						if(data.pageNum < number){
-							return false;
-						}
-						loadDate();
-					}
-				});
-				
-			});
-		}
-		window.onload = loadDate();
-		
-		
-		
-	</script>
-    
-    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/index.js"></script>
+
+</script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/index.js"></script>
+<!-- Including imageView jQuery plugin -->
+<script src="${pageContext.request.contextPath}/js/jquery.imageView.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
 
 
 
