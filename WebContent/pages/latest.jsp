@@ -262,7 +262,7 @@
 						tr += "<div class='picture-box'>";
 						
 						tr += "<a target='_blank' href='${pageContext.request.contextPath}/pages/picture_details.jsp?id="
-								+v[0]+"&name="+v[1]+"&par="+v[2]+"&datemime="+v[4]+"&type="+v[12]+"'>";
+								+v[0]+"&name="+v[1]+"&par="+v[2]+"&datemime="+v[4]+"&type="+v[12]+"&typename="+v[13]+"'>";
 						tr += "<img src='${pageContext.request.contextPath}/"+v[2]+"'>";
 						tr += "</a>";
 						

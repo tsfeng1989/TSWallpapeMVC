@@ -32,7 +32,7 @@ public class AdminAction {
 			//±£´æµ½session
 			session.setAttribute("admin", adm);
 			
-			return "redirect:/admin/NewFile.jsp";
+			return "redirect:/admin/control.jsp";
 		}
 		return "error";
 	}

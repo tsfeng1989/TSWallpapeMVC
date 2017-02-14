@@ -36,8 +36,15 @@
 	margin:55px 0 0 30px;
 	color: #fff;
 }
-
-
+#main-body-content .picture-info .picture-title{
+	font-size: 22px;
+	font-weight: bold;
+	text-align: center;
+}
+#main-body-content .picture-info .pictire-name{
+	margin: 10px 0;
+	height: 50px;
+}
 
 
 

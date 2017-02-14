@@ -226,13 +226,37 @@
 		</div>
 		
 		<div class="picture-info">
-			<h3>图片信息</h3>
-			<div>
+			<div class="picture-title">图片信息</div>
+			<!-- <div class="pictire-name">
 				名称：<span class="pname"></span>
 			</div>
-			<div>
+			<div class="ticture-uploaddate">
 				上传日期：<span class="pdatetime"></span>
-			</div>
+			</div> -->
+			
+			<table>
+				<tr>
+					<td>名称</td>
+					<td><span class="pname"></span></td>
+				</tr>
+				<tr>
+					<td>上传日期</td>
+					<td>
+						<span class="pdatetime"></span>
+					</td>
+				</tr>
+				<tr>
+					<td>类型</td>
+					<td>
+						<span class="typename"></span>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+			
 		</div>
 		
 		<div style="width: 1200px;height: 300px;background:rgba(55,55,55,.8);float: left;">
@@ -253,6 +277,8 @@ $(document).ready(function(){
 	$(".picture-details").attr("rel", parameter);
 	$(".pname").html(getQueryString("name"));
 	$(".pdatetime").html(getQueryString("datemime"));
+	$(".typename").html(getQueryString("typename"),"UTF-8");
+	
 });
 $(function() {
     $('.picture-box').imageView({width: 950, height:605});

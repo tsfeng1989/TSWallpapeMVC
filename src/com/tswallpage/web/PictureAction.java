@@ -2,6 +2,8 @@ package com.tswallpage.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +23,7 @@ import com.tswallpage.service.PictureService;
 import com.tswallpage.service.Picture_userService;
 import com.tswallpage.service.UsersService;
 import com.tswallpage.util.CreateUUID;
+import com.tswallpage.util.MyDateFormat;
 import com.tswallpage.util.PageBean;
 
 /**
@@ -145,6 +148,13 @@ public class PictureAction {
 	@ResponseBody
 	public PageBean pagingQuery(int number){
 		PageBean pb = pictureService.pagingQuery(number);
+		/*MyDateFormat d = new MyDateFormat();
+		
+		for (int i = 0; i < pb.getList().size(); i++) {
+			Picture p = (Picture)pb.getList().get(i);
+			p.setP_date(d.parse(d.format(p.getP_date(), "yyyy-MM-dd HH:mm:ss")));
+		}*/
+		
 		return pb;
 	}
 	

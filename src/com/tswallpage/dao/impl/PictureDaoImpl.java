@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Repository;
 import com.tswallpage.dao.PictureDao;
 import com.tswallpage.entity.Picture;
+import com.tswallpage.util.MyDateFormat;
 import com.tswallpage.util.PageBean;
 /**
  * 
@@ -84,8 +85,14 @@ public class PictureDaoImpl extends BaseDao implements PictureDao {
 				+"left join `tswallpape`.`tb_picture_type` pt on p.p_type=pt.pt_id "
 				+"order by p.p_date desc,p.p_no desc) temporary_table limit "
 				+(pageBean.getStart()-1)+","+(pageBean.getEnd()-pageBean.getStart()+1)+";";
-					
-		pageBean.setList(getSession().createSQLQuery(sql).list());					//查询结果集
+		
+		MyDateFormat d = new MyDateFormat();
+		
+		List list = getSession().createSQLQuery(sql).list();
+		
+		System.out.println(list);
+		
+		pageBean.setList(list);					//查询结果集
 		
 		return pageBean;
 	}
