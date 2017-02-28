@@ -67,7 +67,6 @@
 			<div class="layout-main-body">
 			
 				
-				
 				<!-- <iframe class="body-iframe" name="iframe0" width="100%" height="99%" src="home.html" frameborder="0" data-id="home.html" seamless></iframe> -->
 			</div>
 		</section>

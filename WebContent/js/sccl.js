@@ -396,7 +396,7 @@ $(function(){
 	/*菜单json*/
 	var menu = [{"id":"1","name":"主菜单","parentId":"0","url":"","icon":"","order":"1","isHeader":"1","childMenus":[
 					{"id":"3","name":"图片管理","parentId":"1","url":"","icon":"&#xe604;","order":"1","isHeader":"0","childMenus":[
-						{"id":"4","name":"修改图片","parentId":"3","url":"test1.html","icon":"","order":"1","isHeader":"0","childMenus":""},
+						{"id":"4","name":"修改图片","parentId":"3","url":"../admin/NewFile.jsp","icon":"","order":"1","isHeader":"0","childMenus":""},
 						{"id":"5","name":"删除图片","parentId":"3","url":"test2.html","icon":"","order":"1","isHeader":"0","childMenus":""}
 					]},
 					{"id":"6","name":"用户管理","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[

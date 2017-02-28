@@ -61,7 +61,7 @@ public class PictureDaoImpl extends BaseDao implements PictureDao {
 	//查看全部图片
 	@Override
 	public List queryAllPicture() {
-		return executeQuery("from Picture order by p_date desc");
+		return executeQuery("from Picture order by a_name");
 	}
 	
 	//分页查询(查询全部数据)
